@@ -1,18 +1,15 @@
 @import "gutenberg.css" print;
 /* @import "holiday.css";   */
 /* @import "classless.css"; */
-
-@-moz-document url-prefix("about:reader") {
+@-moz-document url-prefix("about:reader"){
   html {
       overflow-y: scroll !important;
       scrollbar-width: none !important;
       -ms-overflow-style: none !important;
   }
-  
   ::-webkit-scrollbar {
       display: none !important;
   }
-  
   :root {
       --bgcolor: radial-gradient(
           rgba(60,   40,   10,   10.75), black   120%
@@ -35,36 +32,45 @@
       --pink: rgba(245,   105,   0,   1) !important; /* Pinkish Amber */
       --amber: rgba(245,   94,   0,   1) !important; /* Amber */
   }
-  
+  .reader-toolbar, .reader-toolbar .button:not(:hover) {
+      background-color: transparent !important;
+      border: none !important;
+    }
+  .reader-toolbar:not(:hover)>*:not([open]){ visibility:hidden; }
+  .reader-header {
+      color: rgba(250,   150,   30,   10) !important;
+      text-shadow:   0   0   10px rgba(290,   10,   0,   80) !important;
+      position: relative !important;
+      z-index:   2 !important;
+  }
+  hr {
+      color: var(--gray);
+      text-shadow:   0   0   5px rgba(190,   55,   0,   100) !important;
+  }
   header {
       position: relative !important;
       z-index:  1 !important;
   }
-  
   .bright {
       color: rgba(250,   150,   30,   10) !important;
       text-shadow:   0   0   6px rgba(290,   10,   0,   80) !important;
   }
-  
   .always_bright {
       color: rgba(250,   150,   30,   10) !important;
       text-shadow:   0   0   10px rgba(290,   10,   0,   80) !important;
       position: relative !important;
       z-index:   2 !important;
   }
-  
   p::selection{
     color: rgba(250,   150,   30,   10) !important;
     background-color:  rgba(70,   35,   10,   20.75) !important;
     text-shadow:   0   0   12px rgba(290,   20,   0,   80) !important;
     z-index:   2 !important;
   }
-  
   strong {
       color: rgba(250,   160,   30,   10) !important;
       text-shadow:   0   0   6px rgba(290,   10,   0,   80) !important;
   }
-  
   body {
       color: var(--fontcolor) !important;
       background: var(--bgcolor) !important;
@@ -74,10 +80,10 @@
       color: rgba(205,   155,   20,   85) !important;
       font:   1.3rem Inconsolata, monospace !important;
       text-shadow:   0   0   7px rgba(200,   60,   10,   100) !important;
+      text-align: justify !important;
       position: relative !important;
       overflow-x: clip !important;
   }
-  
   body::before {
       content: "" !important;
       position: fixed !important;
@@ -89,7 +95,6 @@
       pointer-events: none !important;
       background: linear-gradient(to bottom, rgba(0,   0,   0,   0.4)   0%, rgba(0,   0,   0,   0)   51%, rgba(0,   0,   0,   0.4)   100%) !important;
   }
-  
   body::after {
       content: "" !important;
       position: absolute !important;
@@ -107,105 +112,85 @@
       opacity:   0 !important;
       z-index:   2 !important;
   }
-  
   a:link, a:visited, a:active {
       color: var(--linkcolor) !important;
   }
-  
   h1, h2, h3 {
       line-height:   1.2 !important;
   }
-  
   p > code, code, pre {
       color: var(--precolor) !important;
       background: var(--prebgcolor) !important;
       padding:   2px !important;
   }
-  
   pre {
       padding:   24px !important;
       overflow-x: auto !important;
       margin:   0 !important;
       background: transparent !important;
   }
-  
   code{
       color: rgba(250,   150,   30,   10) !important;
       text-shadow:   0   0   10px rgba(290,   10,   0,   80) !important;
       background: transparent !important;
   }
-  
   .hidden {
       display: none !important;
   }
-  
   article {
       padding:   24px   0 !important;
   }
-  
   .center {
       display: block !important;
       margin-left: auto !important;
       margin-right: auto !important;
       width:   100% !important;
   }
-  
   figcaption {
       color: gray !important;
       font:   12px/1.5 monospace !important;
       text-align: center !important;
   }
-  
   figure {
       margin: auto !important;
   }
-  
   img {
       display: block !important;
       max-width:   100% !important;
       height: auto !important;
       margin: auto !important;
   }
-  
   ::selection {
       background: rgba(255,   191,   0,   1) !important;
       text-shadow: none !important;
   }
-  
   li::marker {
       color: rgba(250,   160,   30,   10) !important;
       text-shadow:   0   0   6px rgba(290,   10,   0,   80) !important;
   }
-  
   .crt-content {
       filter: hue-rotate(5deg) saturate(1.5) brightness(1.1) !important;
   }
-  
   h1 {
       color: rgba(250,   150,   30,   10) !important;
       text-shadow:   0   0   8px rgba(290,   10,   0,   80) !important;
   }
-  
   h2 {
       color: rgba(240,   140,   20,   10) !important;
       text-shadow:   0   0   7px rgba(280,   9,   0,   80) !important;
   }
-  
   h3 {
       color: rgba(230,   130,   10,   10) !important;
       text-shadow:   0   0   6px rgba(270,   8,   0,   80) !important;
   }
-  
   h4 {
       color: rgba(220,   120,   0,   10) !important;
       text-shadow:   0   0   6px rgba(260,   7,   0,   80) !important;
   }
-  
   h5 {
       color: rgba(210,   110,   0,   10) !important;
       text-shadow:   0   0   6px rgba(250,   6,   0,   80) !important;
   }
-  
   h6 {
       color: rgba(200,   100,   0,   10) !important;
       text-shadow:   0   0   6px rgba(240,   5,   0,   80) !important;
@@ -219,28 +204,24 @@
   --arrowpanel-color: #3e999f;
   --arrowpanel-dimmed: rgba(0, 0, 0, 0.4);
 }
-
 /* Window and toolbar background */
 :root {
   --lwt-accent-color: #c82829;
   --lwt-accent-color-inactive: #c82829;
   --toolbar-bgcolor: #ffffff;
 }
-
 /* Tabs */
 :root {
   --lwt-text-color: #4d4d4c;
   --tab-selected-bgcolor: #efefef;
   --lwt-selected-tab-background-color: #6495ED;
 }
-
 /* Toolbar area */
 :root {
   --toolbarbutton-icon-fill: #ffffff;
   --lwt-toolbarbutton-hover-background: #ffa500;
   --lwt-toolbarbutton-active-background: #ff0000;
 }
-
 /* URL bar */
 :root {
   --toolbar-field-border-color: #8959a8;
@@ -255,28 +236,23 @@
   --toolbar-field-color: #c82829;
   --toolbar-field-focus-color: #ffffff;
 }
-
 /* Sidebar */
 :root {
   --lwt-sidebar-background-color: #800080;
   --lwt-sidebar-text-color: #ffff00;
 }
-
 /* Line between nav-bar and tabs toolbar */
 #navigator-toolbox {
   --lwt-tabs-border-color: #8959a8;
 }
-
 /* Line above tabs */
 #tabbrowser-tabs {
   --lwt-tab-line-color: #ffffff;
 }
-
 /* Header area of the sidebar */
 #sidebar-box {
   --sidebar-background-color: #800080;
 }
-
 /* New tab and browser.xul customization */
 body {
   --newtab-textbox-background-color: #efefef;
@@ -299,17 +275,17 @@ body {
   --newtab-button-secondary-color: #c02020;
   --newtab-primary-action-background-off: #454670;
   --newtab-primary-action-background: #394fcc;
-
   /* Override common colors used in the web. */
-  --common-color-blue: #4271ae;
-  --common-color-red: #c82829;
-  --common-color-green: #718c00;
-  --common-color-yellow: #c99e00;
-  --common-color-purple: #8959a8;
-  --common-color-cyan: #3e999f;
-  --common-color-orange: #f5871f;
-  --common-color-pink: #ff69b4;
-  --common-color-brown: #8e908c;
-  --common-color-white: #ffffff;
-  --common-color-black: #000000;
+  --blue: #4271ae;
+  --red: #c82829;
+  --green: #718c00;
+  --yellow: #c99e00;
+  --purple: #8959a8;
+  --cyan: #3e999f;
+  --orange: #f5871f;
+  --pink: #ff69b4;
+  --brown: #8e908c;
+  --white: #ffffff;
+  --black: #000000;
 }
+
