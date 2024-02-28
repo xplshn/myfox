@@ -1,28 +1,38 @@
 /*
-  __  __   _           _                     
- |  \/  | (_)         (_)                    
- | \  / |  _   _ __    _   _ __ ___     __ _ 
- | |\/| | | | | '_ \  | | | '_ ` _ \   / _` |
- | |  | | | | | | | | | | | | | | | | | (_| |
- |_|  |_| |_| |_| |_| |_| |_| |_| |_|  \__,_|
-                                            
+ * myfox
+ *  - by Xplshn
+/*
 
+
+/* Borrowed css from;                     (ordered from most borrowed to least borrowed)
+* penguinFox
+*  - by p3nguin-kun
+* firefox-minima
+*  - by rockofox
 */
 
+/* config */
 
-
-/* User changable variables */
-
-:root {
-	--tab-font-size: 0.8em; /* Font size of the tab labels */
-	--tab-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* The font used for the tab labels */
-	--max-tab-width: none; /* The maximum width a tab in the tab bar can use. Set this to none for no limit */
-	--show-titlebar-buttons: none; /* Hide the buttons (close/minimize/maximize) in the title bar. Required on some platforms (e.g macOS) to fully hide the title bar. `none` hides them, `block` shows them */
-	--tab-height: 15px;
+* {
+  --animation-speed: 0.2s;
+  --button-corner-rounding: 30px;
+  --urlbar-container-height: 40px !important;
+  --urlbar-min-height: 30px !important;
+  --urlbar-height: 30px !important;
+  --urlbar-toolbar-height: 38px !important;
+  --moz-hidden-unscrollable: scroll !important;
+  --toolbarbutton-border-radius: 3px !important;
+  --tabs-border-color: transparent;
+  --tab-height: 16px;
 }
 
-/* Minima Source Code. Here be dragons. */
-/* Only change this if you know what you're doing */
+:root {
+    --window: -moz-Dialog !important;
+    --secondary: color-mix(in srgb, currentColor 5%, -moz-Dialog) !important;
+    --uc-border-radius: 0px;
+    --uc-status-panel-spacing: 0px;
+    --uc-page-action-margin: 7px;
+}
 
 tab[muted] .tab-label::before {
 	background-image:  url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
@@ -43,91 +53,44 @@ tab:hover[muted] .tab-label::before {
     display: none;
 }
 
-.titlebar-buttonbox-container {
-	display: var(--show-titlebar-buttons);
+/* animation and effect */
+#nav-bar:not([customizing]) {
+  visibility: visible;
+  margin-top: -40px;
+  transition-delay: 0.1s;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  transition: visibility, ease 0.1s, margin-top, ease 0.1s, opacity, ease 0.1s,
+  rotate, ease 0.1s !important;
 }
 
-:root:not([customizing]) #TabsToolbar {
-	margin-left: 1px !important;
-	margin-right: 1px !important;
-	border-radius: 0 !important;
-	padding: 0 !important;
+#nav-bar:hover,
+#nav-bar:focus-within,
+#urlbar[focused='true'],
+#identity-box[open='true'],
+#titlebar:hover + #nav-bar:not([customizing]),
+#toolbar-menubar:not([inactive='true']) ~ #nav-bar:not([customizing]) {
+  visibility: visible;
+
+  margin-top: 0px;
+  filter: alpha(opacity=100);
+  opacity: 100;
+  margin-bottom: -0.2px;
 }
-.tabbrowser-tab * {
-	margin:0 !important;
-	border-radius: 0 !important;
-	font-family: var(--tab-font-family) !important;
+#PersonalToolbar {
+  margin-top: 0px;
 }
-.tabbrowser-tab {
-	height: var(--tab-height);
-	font-size: var(--tab-font-size) !important;
-	min-height: 0 !important;
-	align-items: center !important;
-}
-.tabbrowser-tab[fadein]:not([pinned]) {
-	max-width: var(--max-tab-width) !important;
-}
-.tab-close-button, .new-tab-button, #firefox-view-button, #scrollbutton-up, .tab-secondary-label {
-	display: none !important;
-}
-.tab-icon-image {
-	height: auto !important;
-	width: calc(var(--tab-height) / 1.5) !important;
-	margin-right: 4px !important;
+#nav-bar .toolbarbutton-1[open='true'] {
+  visibility: visible;
+  opacity: 100;
 }
 
-#tabs-newtab-button, #titlebar spacer {
-	display: none !important;
+:root:not([customizing]) :hover > .tabbrowser-tab:not(:hover) {
+  transition: blur, ease 0.1s !important;
 }
 
-:root:not([customizing]) #nav-bar
-{
-	min-height : 2.5em       !important;
-	height     : 2.5em       !important;
-	margin     : 0 0 -2.5em  !important;
-	z-index    : -1000       !important;
-	opacity    : 0           !important;
-}
-
-:root:not([customizing]) #nav-bar:focus-within
-{
-	z-index    : 1000        !important;
-	opacity    : 1           !important;
-}
-
-#nav-bar{
-	border-inline: var(--uc-window-drag-space-width) solid var(--toolbar-bgcolor);
-}
-#new-tab-button, #alltabs-button, #scrollbutton-down, .tab-loading-burst{
-	display: none;
-}
-#titlebar {
-	overflow: none !important;
-}
-
-/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_tabs_with_one_tab.css made available under Mozilla Public License v. 2.0
-See the above repository for updates as well as full license text. */
-
-/* Makes tabs toolbar items zero-height initially and sets enlarge them to fill up space equal to tab-min-height set on tabs. Optionally use privatemode_indicator_as_menu_button.css to replace main menu icon with private browsing indicator while tabs are hidden. */
-/* Firefox 65+ only */
-
-:root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
-
-#titlebar{ -moz-appearance: none !important; }
-#TabsToolbar{ min-height: 0px !important }
-
-#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox, #tabbrowser-arrowscrollbox{ min-height: 0 !important; }
-
-:root:not([customizing]) #tabbrowser-tabs .tabs-newtab-button,
-:root:not([customizing]) #tabs-newtab-button,
-:root:not([customizing]) #TabsToolbar-customization-target > .toolbarbutton-1,
-:root:not([customizing]) #TabsToolbar .titlebar-button{
-	-moz-appearance: none !important;
-	height: 0px;
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
-	-moz-box-align: stretch;
-	margin: 0 !important;
+:root:not([customizing]) :not(:hover) > .tabbrowser-tab {
+  transition: blur, ease 0.1s !important;
 }
 
 .accessibility-indicator,
@@ -140,27 +103,187 @@ See the above repository for updates as well as full license text. */
 	visibility: collapse !important;
 }
 
-/* Button re-styling */
-#tabs-newtab-button:hover,
-#tabbrowser-tabs .tabs-newtab-button:hover{ background-color: var(--toolbarbutton-hover-background) }
+#tabbrowser-tabs .tab-label-container[customizing] {
+  color: transparent;
+  transition: ease 0.1s;
+  transition-delay: 0.2s;
+}
 
-#tabs-newtab-button > .toolbarbutton-icon,
-#tabbrowser-tabs .tabs-newtab-button > .toolbarbutton-icon{
-	padding: 0 !important;
-	transform: scale(0.6);
-	background-color: transparent !important;
+.tabbrowser-tab * {
+	margin:0 !important;
+	border-radius: 0 !important;
+	font-family: var(--tab-font-family) !important;
 }
-/* Extra top padding  in maximized window */
-@media (-moz-os-version: windows-win10){
-	:root[sizemode="maximized"] #navigator-toolbox{ padding-top:7px !important; }
+.tabbrowser-tab {
+	height: var(--tab-height) !important;
+	font-size: var(--tab-font-size) !important;
+	min-height: 0 !important;
+	align-items: center !important;
 }
+
+.tabbrowser-tab[fadein]:not([pinned]) {
+	max-width: var(--max-tab-width) !important;
+}
+
+.tabbrowser-tab:not([pinned]) .bookmark-item .toolbarbutton-icon{opacity: 0!important; transition: .15s !important; width: 0!important; padding-left: 16px!important}
+.tabbrowser-tab:not([pinned]):hover .bookmark-item:hover .toolbarbutton-icon{opacity: 100!important; transition: .15s !important; display: inline-block!important; width: 16px!important; padding-left: 0!important}
+.tabbrowser-tab:not([hover]) .bookmark-item:not([hover]) .toolbarbutton-icon{padding-left: 0!important}
+
+.tab-icon-image {
+	height: auto !important;
+	width: calc(var(--tab-height) / 1.5) !important;
+	margin-right: 4px !important;
+}
+
+#tabs-newtab-button, #titlebar spacer {
+	display: none !important;
+}
+
+/*  Removes annoying buttons and spaces */
+.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"]{display: none !important}
+#tabbrowser-tabs{border-inline-start-width: 0!important}
+
+/*  Makes some buttons nicer  */
+#PanelUI-menu-button, #unified-extensions-button, #reload-button, #stop-button {padding: 2px !important}
+#reload-button, #stop-button{margin: 1px !important;}
+
+/* X-button */
+:root {
+    --show-tab-close-button: none;
+    --show-tab-close-button-hover: -moz-inline-block;
+}
+.tabbrowser-tab:not([pinned]) .tab-close-button { display: var(--show-tab-close-button) !important; }
+.tabbrowser-tab:not([pinned]):hover .tab-close-button { display: var(--show-tab-close-button-hover) !important }
+
+/* tabbar */
+
+/* Hide the secondary Tab Label
+ * e.g. playing indicator (the text, not the icon) */
+.tab-secondary-label { display: none !important; }
+
+:root {
+  --toolbarbutton-border-radius: 0 !important;
+  --tab-border-radius: 0 !important;
+  --tab-block-margin: 0 !important;
+}
+
+.tabbrowser-tab:is([visuallyselected='true'], [multiselected])
+  > .tab-stack
+  > .tab-background {
+  box-shadow: none !important;
+}
+
+.tab-background {
+  border-right: 0px solid rgba(0, 0, 0, 0) !important;
+  margin-left: -1px !important;
+}
+
+.tabbrowser-tab[last-visible-tab='true'] {
+  padding-inline-end: 0 !important;
+}
+
+#tabs-newtab-button {
+  padding-left: 0 !important;
+}
+
+/* multi tab selection */
+#tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([multiselected])
+  > .tab-stack
+  > .tab-background:-moz-lwtheme { outline-color: var(--toolbarseparator-color) !important; }
+
+/* remove gap after pinned tabs */
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+  > #tabbrowser-arrowscrollbox
+  > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) { margin-inline-start: 0 !important; }
+
+/*  Removes annoying border  */
+#navigator-toolbox{border:none !important;}
+
+/*  Removes the annoying rainbow thing from the hamburger  */
+#appMenu-fxa-separator{border-image:none !important;}
+
+
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_tabs_with_one_tab.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Makes tabs toolbar items zero-height initially and sets enlarge them to fill up space equal to tab-min-height set on tabs. Optionally use privatemode_indicator_as_menu_button.css to replace main menu icon with private browsing indicator while tabs are hidden. 
+
+This will NOT work correctly if you have hidden tabs such as with tab groups extensions
+*/
+
+/* This style causes CSD window controls to disappear on linux, but you can kind of work around that by using window_control_fallback_for_custom_windows_theme.css */
+
+:root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
+
+#titlebar{ -moz-appearance: none !important; }
+#TabsToolbar{ min-height: 0px !important }
+
+#tabbrowser-tabs,
+#tabbrowser-arrowscrollbox{ min-height: 0 !important; }
+
+.accessibility-indicator,
+.private-browsing-indicator{ 
+  height: unset !important;
+}
+.accessibility-indicator > hbox{ padding-block: 0 !important }
+
+.tabbrowser-tab{
+  height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin,0px));
+}
+
+.tabbrowser-tab:only-of-type,
+.tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
+  visibility: collapse !important;
+  min-height: 0 !important;
+  height: 0;
+}
+
 /* Fix window controls not being clickable */
 :root[tabsintitlebar] #toolbar-menubar[autohide="true"][inactive]{
-	transition: height 0ms steps(1) 80ms;
+  transition: height 0ms steps(1) 80ms;
 }
-#nav-bar{
-	border-inline: var(--uc-window-drag-space-width) solid var(--toolbar-bgcolor);
+:where(#nav-bar){
+  border-inline: var(--uc-window-drag-space-width,0) solid var(--toolbar-bgcolor);
 }
-#navigator-toolbox {
-	appearance: toolbar !important; /* Pretty much anything except none */
+@media (-moz-platform: linux){
+  #TabsToolbar .titlebar-buttonbox{
+    align-items: stretch !important;
+  }
+  #TabsToolbar > .titlebar-buttonbox-container > .titlebar-buttonbox > .titlebar-button{
+    transform: scale(0.8);
+    margin-inline: -3px !important;
+  }
+  #TabsToolbar .titlebar-button > .toolbarbutton-icon{ padding: 0 13px !important }
+}
+
+#tabbrowser-tabs:not([overflow]) ~ #alltabs-button{
+  display: none;
+}
+
+#tabbrowser-arrowscrollbox-periphery,
+#private-browsing-indicator-with-label,
+#TabsToolbar > .titlebar-buttonbox-container{
+  contain: strict;
+  contain-intrinsic-height: 0px;
+}
+#tabbrowser-arrowscrollbox-periphery{
+  contain-intrinsic-width: 36px;
+  padding-inline-end: 3px;
+}
+#private-browsing-indicator-with-label{
+  contain-intrinsic-width: 116px;
+}
+#TabsToolbar > .titlebar-buttonbox-container{
+  contain-intrinsic-width: var(--uc-window-control-width,138px);
+  margin-bottom: 0 !important;
+}
+@media  (-moz-platform: linux){
+  #TabsToolbar > .titlebar-buttonbox-container{
+    contain-intrinsic-width: var(--uc-window-control-width,105px);
+  }
+}
+@media  (-moz-platform: macos){
+  #TabsToolbar > .titlebar-buttonbox-container{
+    contain-intrinsic-width: var(--uc-window-control-width,72px);
+  }
 }
