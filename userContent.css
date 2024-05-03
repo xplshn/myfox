@@ -13,35 +13,34 @@
   :root {
       --bgcolor: radial-gradient(
           rgba(60,   40,   10,   10.75), black   120%
-      ) !important;
-      --fontcolor: rgba(220,   140,   30,   85) !important;
-      --linkcolor: rgba(220,   140,   30,   85) !important;
-      --visitedcolor: rgba(290,   190,   50,   85) !important;
-      --precolor: rgba(220,   140,   30,   85) !important;
-      --prebgcolor: rgba(60,   40,   10,   10.75) !important;
-      --black: rgba(245,   215,   0,   1) !important; /* Bright Amber */
-      --white: rgba(245,   204,   0,   1) !important; /* Medium Amber */
-      --gray: rgba(245,   193,   0,   1) !important; /* Dark Amber */
-      --red: rgba(220,   135,   0,   1) !important; /* Reddish Amber */
-      --orange: rgba(245,   171,   0,   1) !important; /* Orange Amber */
-      --yellow: rgba(245,   160,   0,   1) !important; /* Yellow Amber */
-      --green: rgba(245,   149,   0,   1) !important; /* Greenish Amber */
-      --blue: rgba(245,   138,   0,   1) !important; /* Bluish Amber */
-      --purple: rgba(245,   127,   0,   1) !important; /* Purplish Amber */
-      --brown: rgba(245,   116,   0,   1) !important; /* Brownish Amber */
-      --pink: rgba(245,   105,   0,   1) !important; /* Pinkish Amber */
-      --amber: rgba(245,   94,   0,   1) !important; /* Amber */
+      );
+      --fontcolor: rgba(220,   140,   30,   85);
+      --linkcolor: rgba(220,   140,   30,   85);
+      --visitedcolor: rgba(290,   190,   50,   85);
+      --precolor: rgba(220,   140,   30,   85);
+      --prebgcolor: rgba(60,   40,   10,   10.75);
+      --black: rgba(245,   215,   0,   1); /* Bright Amber */
+      --white: rgba(245,   204,   0,   1); /* Medium Amber */
+      --gray: rgba(245,   193,   0,   1); /* Dark Amber */
+      --red: rgba(220,   135,   0,   1); /* Reddish Amber */
+      --orange: rgba(245,   171,   0,   1); /* Orange Amber */
+      --yellow: rgba(245,   160,   0,   1); /* Yellow Amber */
+      --green: rgba(245,   149,   0,   1); /* Greenish Amber */
+      --blue: rgba(245,   138,   0,   1); /* Bluish Amber */
+      --purple: rgba(245,   127,   0,   1); /* Purplish Amber */
+      --brown: rgba(245,   116,   0,   1); /* Brownish Amber */
+      --pink: rgba(245,   105,   0,   1); /* Pinkish Amber */
+      --amber: rgba(245,   94,   0,   1); /* Amber */
   }
-  .reader-toolbar, .reader-toolbar .button:not(:hover) {
-      background-color: transparent !important;
-      border: none !important;
-    }
-  .reader-toolbar:not(:hover)>*:not([open]){ visibility:hidden; }
+  
   .reader-header {
       color: rgba(250,   150,   30,   10) !important;
       text-shadow:   0   0   10px rgba(290,   10,   0,   80) !important;
       position: relative !important;
       z-index:   2 !important;
+  }
+  .toolbar-container {
+    z-index: 3 !important;
   }
   hr {
       color: var(--gray);
@@ -49,7 +48,7 @@
   }
   header {
       position: relative !important;
-      z-index:  1 !important;
+      z-index:   1 !important;
   }
   .bright {
       color: rgba(250,   150,   30,   10) !important;
@@ -78,8 +77,8 @@
       background-repeat: no-repeat !important;
       background-attachment: fixed !important;
       color: rgba(205,   155,   20,   85) !important;
-      font:   1.3rem Inconsolata, monospace !important;
       text-shadow:   0   0   7px rgba(200,   60,   10,   100) !important;
+      /* Reader tweaks */
       text-align: justify !important;
       position: relative !important;
       overflow-x: clip !important;
@@ -93,7 +92,7 @@
       height:   100% !important;
       z-index:   1 !important;
       pointer-events: none !important;
-      background: linear-gradient(to bottom, rgba(0,   0,   0,   0.4)   0%, rgba(0,   0,   0,   0)   51%, rgba(0,   0,   0,   0.4)   100%) !important;
+      background: linear-gradient(to bottom, rgba(0,  0,  0,  0.4)  0%, rgba(0,  0,  0,  0)  51%, rgba(0,  0,  0,  0.4)  100%) !important; /*I WANTED 50%, BUT A BLACK LINE APPEARS IN THE MIDDLE OF THE PAGE (50% Y AXIS) */
   }
   body::after {
       content: "" !important;
@@ -132,7 +131,7 @@
   code{
       color: rgba(250,   150,   30,   10) !important;
       text-shadow:   0   0   10px rgba(290,   10,   0,   80) !important;
-      background: transparent !important;
+      background: transparent !important; /* May conflict with hljs */
   }
   .hidden {
       display: none !important;
@@ -147,8 +146,7 @@
       width:   100% !important;
   }
   figcaption {
-      color: gray !important;
-      font:   12px/1.5 monospace !important;
+      color: --var(amber) !important;
       text-align: center !important;
   }
   figure {
@@ -196,96 +194,4 @@
       text-shadow:   0   0   6px rgba(240,   5,   0,   80) !important;
   }
 }
-
-/* Popup panels */
-:root {
-  --arrowpanel-background: #efefef;
-  --arrowpanel-border-color: #8959a8;
-  --arrowpanel-color: #3e999f;
-  --arrowpanel-dimmed: rgba(0, 0, 0, 0.4);
 }
-/* Window and toolbar background */
-:root {
-  --lwt-accent-color: #c82829;
-  --lwt-accent-color-inactive: #c82829;
-  --toolbar-bgcolor: #ffffff;
-}
-/* Tabs */
-:root {
-  --lwt-text-color: #4d4d4c;
-  --tab-selected-bgcolor: #efefef;
-  --lwt-selected-tab-background-color: #6495ED;
-}
-/* Toolbar area */
-:root {
-  --toolbarbutton-icon-fill: #ffffff;
-  --lwt-toolbarbutton-hover-background: #ffa500;
-  --lwt-toolbarbutton-active-background: #ff0000;
-}
-/* URL bar */
-:root {
-  --toolbar-field-border-color: #8959a8;
-  --toolbar-field-focus-border-color: #ff69b4;
-  --urlbar-popup-url-color: #3e999f;
-  --lwt-toolbar-field-background-color: #efefef;
-  --lwt-toolbar-field-focus: #d3d3d3;
-  --lwt-toolbar-field-color: #c82829;
-  --lwt-toolbar-field-focus-color: #ffffff;
-  --toolbar-field-background-color: #efefef;
-  --toolbar-field-focus-background-color: #d3d3d3;
-  --toolbar-field-color: #c82829;
-  --toolbar-field-focus-color: #ffffff;
-}
-/* Sidebar */
-:root {
-  --lwt-sidebar-background-color: #800080;
-  --lwt-sidebar-text-color: #ffff00;
-}
-/* Line between nav-bar and tabs toolbar */
-#navigator-toolbox {
-  --lwt-tabs-border-color: #8959a8;
-}
-/* Line above tabs */
-#tabbrowser-tabs {
-  --lwt-tab-line-color: #ffffff;
-}
-/* Header area of the sidebar */
-#sidebar-box {
-  --sidebar-background-color: #800080;
-}
-/* New tab and browser.xul customization */
-body {
-  --newtab-textbox-background-color: #efefef;
-  --newtab-topsites-background-color: #efefef;
-  --newtab-contextmenu-background-color: #262530;
-  --newtab-element-hover-color: #3e999f;
-  --newtab-element-active-color: #3e999f;
-  --newtab-icon-primary-color: #eaeaea;
-  --newtab-border-secondary-color: #8959a8;
-  --newtab-section-header-text-color: #ffffff;
-  --newtab-card-background-color: #292750;
-  --newtab-text-secondary-color: #718c00;
-  --newtab-text-primary-color: #4d4d4c;
-  --newtab-border-primary-color: #c02020;
-  --newtab-modal-color: #201f5080;
-  --newtab-overlay-color: rgba(18, 18, 15, 0.8);
-  --newtab-textbox-border: #3350bf;
-  --customize-menu-separator-line-color: #313182;
-  --newtab-button-primary-color: #1050ff;
-  --newtab-button-secondary-color: #c02020;
-  --newtab-primary-action-background-off: #454670;
-  --newtab-primary-action-background: #394fcc;
-  /* Override common colors used in the web. */
-  --blue: #4271ae;
-  --red: #c82829;
-  --green: #718c00;
-  --yellow: #c99e00;
-  --purple: #8959a8;
-  --cyan: #3e999f;
-  --orange: #f5871f;
-  --pink: #ff69b4;
-  --brown: #8e908c;
-  --white: #ffffff;
-  --black: #000000;
-}
-
